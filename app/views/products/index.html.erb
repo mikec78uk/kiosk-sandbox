@@ -1,0 +1,81 @@
+
+<!--
+
+1. Add Some Products - DONE
+2. Create link to product details page - DONE
+3. Need to youtube URL (or something) to the models so there is a page to look at (try to do on the same URL)
+4. Try to get web socket working
+
+
+-->
+
+<!-- Page Title -->
+
+<div class="container">
+    <div class="row center">
+    <!-- Link to new product form -->
+    <h1>Products</h1>
+    </div>
+</div>
+
+
+
+<!-- Product Display -->
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+              <% @products.each do |product| %>
+                    <div class="swiper-slide">
+                        <div class="text">
+                        <p class="rangeName"><%= product.range_name.upcase %></p>
+                        <p class="productName"><%= product.product_name %></p>
+                        <p class="price">£<%= product.price_now %></p>
+                        <p><%= link_to "Details", product_path(product.id) %></p>    
+                        <p><%= link_to "Edit", edit_product_path(product.id) %></p>
+                        </div>
+                    </div>
+              <% end %>
+          </div> 
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </div>
+</div>
+
+
+
+<!-- END: Pagination Display -->
+
+
+
+
+<!-- Add products button -->      
+<div class="container">
+    <div class="row center">
+    <!-- Link to new product form -->
+    <%= link_to "Add product", new_product_path, class: "btn btn-default" %>
+    </div>
+</div>
+
+
+
+
+
+<!-- START: Script for Swiper -->
+
+   <script>
+    var swiper = new Swiper('.swiper-container', {
+        //pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 3,
+        slidesPerColumn: 2,
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+    </script>
+
+<!-- END: Swiper Controls -->
